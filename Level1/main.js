@@ -212,3 +212,52 @@
 //     .map((l, idx) => answer.push(l.stage));
 //   return answer;
 // }
+
+//################################################################################# 새로운 아이디 만들기!
+// function solution(new_id) {
+//   let test = new_id.toLocaleLowerCase();
+//   let regx = /([a-z0-9-_.])+/gm;
+
+//   let result = test.match(regx).join("");
+//   // console.log("result", result);
+//   console.log("test0", result);
+
+//   result = result.replace(/\.{2,}/gm, ".");
+
+//   console.log("test1", result);
+
+//   let split_result = result.split("");
+//   // console.log(split_resut)
+//   /// 앞 or 뒤가 .인지 확인
+
+//   if (split_result[0] === ".") {
+//     split_result.shift();
+//   }
+
+//   if (split_result[split_result.length - 1] === ".") {
+//     split_result.pop();
+//   }
+
+//   ///a 대입
+//   if (split_result.length === 0) {
+//     split_result.push("a");
+//   }
+
+//   // 16자 이상이면? 15까지만 놔두기
+//   if (split_result.length >= 16) {
+//     split_result = split_result.slice(0, 15);
+//   }
+
+//   if (split_result[split_result.length - 1] === ".") {
+//     split_result.pop();
+//   }
+
+//   // z - -
+//   if (split_result.length <= 2) {
+//     for (let i = split_result.length; i < 3; i++) {
+//       split_result.push(split_result[split_result.length - 1]);
+//     }
+//   }
+
+//   return split_result.join("");
+// }
