@@ -261,3 +261,131 @@
 
 //   return split_result.join("");
 // }
+
+//#################################################################################
+
+// function solution(answers) {
+// let list =[]
+// let rank =[]
+
+// let arr_a = []
+// let arr_b = []
+// let arr_c = []
+
+// let pattern_a =[1,2,3,4,5]
+// let pattern_b =[2,1,2,3,2,4,2,5]
+// let pattern_c = [3,3,1,1,2,2,4,4,5,5]
+
+// for(let i = 0; i<answers.length;i++){
+//   arr_a.push(pattern_a[i-5*Math.floor(i/5)])
+//   arr_b.push(pattern_b[i-8*Math.floor(i/8)])
+//   arr_c.push(pattern_c[i-10*Math.floor(i/10)])
+// }
+
+// let ans = [arr_a, arr_b, arr_c]
+
+// for(let i = 0; i<3; i++){
+//   let obj = new Object
+//   obj["pattern"] = i+1
+//   obj["score"] = ans[i].filter((l,idx)=>l===answers[idx]).length
+//   list.push(obj)
+// }
+
+// list.sort((a,b)=>b.score-a.score)
+// console.log(list)
+
+// if(list[0].score !== list[1].score){
+//   rank.push(list[0].pattern)
+// } else{
+//   rank.push(list[0].pattern)
+//   rank.push(list[1].pattern)
+
+//   if(list[1].score ===list[2].score ){
+//     rank.push(list[2].pattern)
+//   }
+// }
+
+// return rank
+// }
+
+// console.log(solution(a))
+
+//#############################################
+// function solution(answers) {
+//     var answer = [];
+//     var a1 = [1, 2, 3, 4, 5];
+//     var a2 = [2, 1, 2, 3, 2, 4, 2, 5]
+//     var a3 = [ 3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
+
+//     var a1c = answers.filter((a,i)=> a === a1[i%a1.length]).length;
+//     var a2c = answers.filter((a,i)=> a === a2[i%a2.length]).length;
+//     var a3c = answers.filter((a,i)=> a === a3[i%a3.length]).length;
+//     var max = Math.max(a1c,a2c,a3c);
+
+//     if (a1c === max) {answer.push(1)};
+//     if (a2c === max) {answer.push(2)};
+//     if (a3c === max) {answer.push(3)};
+
+//     return answer;
+// }
+
+//######################################## 비밀번호 입력
+
+// let a = [45, 4, 35, 20, 3, 9];
+// let b = [20, 9, 3, 45, 4, 35];
+
+// function solution(lottos, win_nums) {
+//   let zero_num = 6 - lottos.filter((l, idx) => l !== 0).length;
+//   let ans_arr = [];
+
+//   let obj = {
+//     6: 1,
+//     5: 2,
+//     4: 3,
+//     3: 4,
+//     2: 5,
+//     1: 6,
+//     0: 6
+//   };
+
+//   lottos.map((l, idx) => {
+//     if (win_nums.indexOf(l) !== -1) {
+//       ans_arr.push(l);
+//     }
+//   });
+
+//   let max = ans_arr.length + zero_num;
+//   let min = ans_arr.length;
+
+//   if (ans_arr.length === 0 && zero_num !== 0) {
+//     min = 1;
+//   }
+//   console.log(zero_num);
+
+//   return [obj[max], obj[min]];
+// }
+
+// console.log(solution(a, b));
+
+// function solution(lottos, win_nums) {
+//   const rank = [6, 6, 5, 4, 3, 2, 1];
+//   let answer = [],
+//       ans = [],
+//       ans1 = [];
+
+//   lottos.map(x => {
+//       let val = win_nums.find(y => y == x);
+
+//       if(x == 0) ans1.push(x)
+//       if(val) {
+//           ans.push(val)
+//           ans1.push(val)
+//       }
+//   })
+//   answer.push(rank[ans1.length])
+//   answer.push(rank[ans.length])
+
+//   return answer;
+// }
+
+//##########################################
