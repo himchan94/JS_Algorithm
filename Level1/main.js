@@ -388,4 +388,47 @@
 //   return answer;
 // }
 
-//##########################################
+//########################################## 크레인 인형뽑기 게임
+
+let a = [
+  [0, 0, 0, 0, 0],
+  [0, 0, 1, 0, 3],
+  [0, 2, 5, 0, 1],
+  [4, 2, 4, 4, 2],
+  [3, 5, 1, 3, 1],
+];
+
+let b = [1, 5, 3, 5, 1, 2, 1, 4];
+
+function solution(board, moves) {
+  let result = 0;
+  let temp = 0;
+  let basket = [];
+
+  for (let i = 0; i < moves.length; i++) {
+    for (let j = 0; j < board.length; j++) {
+      if (board[j][moves[i] - 1] !== 0) {
+        // 0이 아니라면?
+        if (temp === board[j][moves[i] - 1]) {
+          // temp랑 숫자가 같으면?
+          result += 2; // 결과에 2 더함
+          if (basket.length > 0) {
+            basket.pop();
+            temp = basket[basket.length - 1];
+          } else {
+            temp = 0;
+          }
+        } else {
+          basket.push(board[j][moves[i] - 1]);
+          temp = board[j][moves[i] - 1];
+        }
+        board[j][moves[i] - 1] = 0;
+        break;
+      }
+    }
+  }
+
+  return result;
+}
+
+console.log(solution(a, b));
