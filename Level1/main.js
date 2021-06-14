@@ -390,45 +390,226 @@
 
 //########################################## 크레인 인형뽑기 게임
 
-let a = [
-  [0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 3],
-  [0, 2, 5, 0, 1],
-  [4, 2, 4, 4, 2],
-  [3, 5, 1, 3, 1],
-];
+// let a = [
+//   [0, 0, 0, 0, 0],
+//   [0, 0, 1, 0, 3],
+//   [0, 2, 5, 0, 1],
+//   [4, 2, 4, 4, 2],
+//   [3, 5, 1, 3, 1],
+// ];
 
-let b = [1, 5, 3, 5, 1, 2, 1, 4];
+// let b = [1, 5, 3, 5, 1, 2, 1, 4];
 
-function solution(board, moves) {
-  let result = 0;
-  let temp = 0;
-  let basket = [];
+// function solution(board, moves) {
+//   let result = 0;
+//   let temp = 0;
+//   let basket = [];
 
-  for (let i = 0; i < moves.length; i++) {
-    for (let j = 0; j < board.length; j++) {
-      if (board[j][moves[i] - 1] !== 0) {
-        // 0이 아니라면?
-        if (temp === board[j][moves[i] - 1]) {
-          // temp랑 숫자가 같으면?
-          result += 2; // 결과에 2 더함
-          if (basket.length > 0) {
-            basket.pop();
-            temp = basket[basket.length - 1];
-          } else {
-            temp = 0;
-          }
-        } else {
-          basket.push(board[j][moves[i] - 1]);
-          temp = board[j][moves[i] - 1];
-        }
-        board[j][moves[i] - 1] = 0;
-        break;
-      }
-    }
-  }
+//   for (let i = 0; i < moves.length; i++) {
+//     for (let j = 0; j < board.length; j++) {
+//       // 0 1 2 3 4
+//       if (board[j][moves[i] - 1] !== 0) {
+//         // 0이 아니라면?
+//         if (temp === board[j][moves[i] - 1]) {
+//           // temp랑 숫자가 같으면?
+//           result += 2; // 결과에 2 더함`
+//           if (basket.length > 0) {
+//             basket.pop();
+//             temp = basket[basket.length - 1];
+//           } else {
+//             temp = 0;
+//           }
+//         } else {
+//           basket.push(board[j][moves[i] - 1]);
+//           temp = board[j][moves[i] - 1];
+//         }
+//         board[j][moves[i] - 1] = 0;
+//         break;
+//       }
+//     }
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
-console.log(solution(a, b));
+// console.log(solution(a, b));
+
+//##########################################오픈채팅방
+
+// let a = [
+//   "Enter uid1234 Muzi",
+//   "Enter uid4567 Prodo",
+//   "Leave uid1234",
+//   "Enter uid1234 Prodo",
+//   "Change uid4567 Ryan"
+// ];
+
+// function solution(record) {
+//   var answer = [];
+
+//   //1. 배열 생성
+//   var newArr = record.map((str) => str.split(" "));
+
+//   //2. uid와 nickName match
+//   // ***Leave인 경우 undefined 고려하기 (예외처리!)
+//   var nickNameSet = {};
+//   for (var i = 0; i < newArr.length; i++) {
+//     if (newArr[i].length === 3) {
+//       nickNameSet[newArr[i][1]] = newArr[i][2];
+//     }
+//   }
+
+//   //3. 출력하기
+//   for (var i = 0; i < newArr.length; i++) {
+//     if (newArr[i][0] === "Enter") {
+//       answer.push(nickNameSet[newArr[i][1]] + "님이 들어왔습니다.");
+//     } else if (newArr[i][0] === "Leave") {
+//       answer.push(nickNameSet[newArr[i][1]] + "님이 나갔습니다.");
+//     }
+//   }
+
+//   return answer;
+// }
+
+// function solution(record) {
+//   const userInfo = {};
+//   const action = [];
+//   const stateMapping = {
+//       'Enter': '님이 들어왔습니다.',
+//       'Leave': '님이 나갔습니다.'
+//   }
+
+//   record.forEach((v) => {
+//       const [state, id, nick] = v.split(' ');
+//       console.log(state,id,nick)
+
+//       if(state !== "Change") {
+//           action.push([state, id]);
+//       }
+
+//       if(nick) {
+//           userInfo[id] = nick;
+//       }
+//   })
+
+//   console.log(action)
+
+//   return action.map(([state, uid]) => {
+//       return `${userInfo[uid]}${stateMapping[state]}`;
+//   })
+// }
+
+// console.log(solution(a))
+
+//########################################## 타겟넘버
+
+// -1+1+1+1+1 = 3
+// +1-1+1+1+1 = 3
+// +1+1-1+1+1 = 3
+// +1+1+1-1+1 = 3
+// +1+1+1+1-1 = 3
+
+// class Node {
+//   constructor(data) {
+//     this.data = data; // 다른 노드와 차별점을 두는 데이터
+//     this.children = []; // 자식들과의 정보(주소)를 담을 배열
+//   }
+
+//   add(data) {
+//     // 자식 추가하는 메소드
+//     this.children.push(new Node(data)); // 자식 노드를 생성하고 바로 배열에 저장한다. (주소를 저장하는 행위)
+//   }
+
+//   remove(data) {
+//     // 자식의 정보를 지우는 메소드
+//     this.children = this.children.filter((child) =>
+//       child.data === data ? false : true
+//     ); // filter 를 거쳐서 해당하는 자식의 정보를 배열에서 빼주면 된다.
+//   }
+// }
+
+// class Tree {
+//   constructor() {
+//     this.root = null;
+//   }
+// }
+
+// const t = new Tree(); // 빈 트리를 생성 해 주고
+// console.log(t)
+// t.root = new Node("a"); // 루트가 node 'a'의 주소를 가리키면 'a' 의 자식들까지 접근 가능하다.
+// t.root.add("b"); // a의 자식 'b', 'c'
+// t.root.add("c");
+// t.root.children[0].add("d"); // 'b' 의 자식으로 'd'가 추가된다.
+
+// let a = [1, 1, 1, 1, 1];
+
+// function solution(numbers, target) {
+//   var answer = 0;
+
+//   function recur(idx, sum){
+//       if( idx === numbers.length){
+//           if(sum ===target ){
+//               answer+=1;
+//           }
+//           return;
+//       }
+
+//       recur(idx+1, sum+numbers[idx]);
+//       recur(idx+1, sum-numbers[idx]);
+//   }
+
+//   recur(0, 0);
+
+//   return answer;
+// }
+
+// console.log(solution(a,3))
+
+//########################################## 124나라
+
+// function solution(n) {
+//   let keys = {
+//     1: 1,
+//     2: 2,
+//     3: 4,
+//     4: 11,
+//     5: 12,
+//     6: 14,
+//     7: 21,
+//     8: 22,
+//     9: 24,
+//     10: 41
+//   };
+//   let ans = [];
+
+//   let number_arr = (n + "").split("");
+//   // console.log(number_arr);
+
+//   for (let i = 0; i < number_arr.length; i++) {
+//     if (number_arr[i] === "1" && number_arr[i + 1] === "0") {
+//       ans.push(keys[10]);
+//     } else if (number_arr[i] === "0") {
+//       continue;
+//     } else {
+//       ans.push(keys[number_arr[i]]);
+//     }
+//   }
+
+//   return ans.join("");
+// }
+
+// function solution(n) {
+//   const number124 = [ 4, 1, 2];
+//   let answer = "";
+
+//   while(n){
+//       answer = number124[n%3] + answer;
+//       n = (n%3 == 0)? n/3 - 1 : Math.floor(n/3);
+//       console.log(answer)
+//       console.log(n)
+//   }
+
+//   return answer
+// }
+
+// console.log(solution(4))
