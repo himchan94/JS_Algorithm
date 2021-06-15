@@ -613,3 +613,159 @@
 // }
 
 // console.log(solution(4))
+
+//######################################################### 기능개발
+// let a = [95, 90, 99, 99, 80, 99]	;
+// let b = [1, 1, 1, 1, 1, 1];
+
+// 핵심 : 기능들과 스피드가 짝이되어 각각 올라감.
+// function solution(progresses, speeds) {
+//   let answer = [];
+
+//   while(speeds.length > 0) { // 스피드 배열을 기준으로 0이되면 종료
+//       for(let i=0;i<speeds.length;i++) { // 각 스피드에 맞게 기능을 하나씩 추가
+//           if(progresses[i] < 100) {
+//               progresses[i] += speeds[i];
+//           }
+//       }
+//       let deploy_count = 0;
+//       while(progresses[0] >= 100) { // 100이넘으면 shift, 다음 기능이 100이 되어도 shift
+//           progresses.shift();
+//           speeds.shift();
+//           deploy_count++;
+//       }
+//       if(deploy_count > 0) { // 결과 배열에 넣어주기
+//           answer.push(deploy_count);
+//       }
+//   }
+//   return answer;
+// }
+
+// function solution(progresses, speeds) {
+//   let answer = [0];
+//   let days = progresses.map((progress, index) => Math.ceil((100 - progress) / speeds[index]));
+//   let maxDay = days[0];
+
+//   for(let i = 0, j = 0; i< days.length; i++){
+//       if(days[i] <= maxDay) {
+//           answer[j] += 1;
+//       } else {
+//           maxDay = days[i];
+//           answer[++j] = 1;
+//       }
+//   }
+
+//   return answer;
+// }
+
+//######################################################### 문자열 압축
+// let a = "aabbaccc";  //2a2ba3c
+
+// function solution(s) {
+//   var answer = 0;
+//   return answer;
+// }
+
+//######################################################### 멀쩡한 사각형
+
+// function solution(w, h) {
+//   let total_amount = w * h;
+//   let useless = 0;
+
+//   if (w === 1 || h === 1) {
+//     total_amount = 0;
+//   } else {
+//     if (w === h) {
+//       useless = w;
+//     } else if (w % 2 !== 0 && h % 2 === 0) {
+//       useless = (w - 2) * h;
+//     } else if (w % 2 === 0 && h % 2 !== 0) {
+//       useless = (h - 2) * w;
+//     } else if (w % 2 !== 0 && h % 2 !== 0) {
+//       useless = Math.floor((w * h) / 2);
+//     } else if (w % 2 === 0 && h % 2 === 0) {
+//       useless = Math.min(w, h) * 2;
+//     }
+//   }
+
+//   return total_amount - useless;
+// }
+
+// console.log(solution(8, 12));
+
+// function gcd(w, h) {
+//   // 처음 W와 H를 받습니다.
+
+//   // W와 H의 나머지를 구합니다.
+//   const mod = w % h;
+
+//   // 만약 나머지가 0일 경우 H를 반환합니다.
+//   if (mod === 0) {
+//     return h;
+//   }
+
+//   // 만약 0이 아닐경우 W에 H를 넣고 H에 나머지인 mod를 넣어 해당 함수를 다시 호출해 줍니다.
+//   return gcd(h, mod);
+// }
+
+// function solution(w, h) {
+//   // 최대 공약수를 구해줍니다.
+//   const gcdVal = gcd(w, h);
+
+//   // 공식에 맞춰 사용
+//   return w * h - (w + h - gcdVal);
+// }
+
+// console.log(solution(1, 3));
+
+//########################################################### 수식최대화
+
+//########################################################### N개의 최소공배수
+// let a = [2, 6, 8, 14];
+
+// function solution(arr) {
+//   function gcd(a, b) {
+//     return a % b === 0 ? b : gcd(b, a % b);
+//   }
+//   let GCD = arr[0];
+//   let LCM = arr[0];
+
+//   for (let i = 0; i < arr.length; i++) {
+//     GCD = gcd(GCD, arr[i]);
+//     LCM = (LCM * arr[i]) / GCD;
+//   }
+
+//   return LCM;
+// }
+
+// function solution(arr) {
+//   let ans = 1;
+
+//   function gcd(a, b) {
+//     return a % b === 0 ? b : gcd(b, a % b);
+//   }
+
+//   function lcm(a, b) {
+//     return (a * b) / gcd(a, b);
+//   }
+
+//   for (let i = 0; i < arr.length; i++) {
+//     ans = lcm(ans, arr[i]);
+//   }
+
+//   return ans;
+// }
+
+// console.log(solution(a));
+
+// function test(a,b){
+//   return a-b?["true"]:["false"]
+// }
+
+// console.log(test(1,1))
+
+//########################################################### JadenCase 문자열 만들기
+
+// function solution(s) {
+//   return s.split(" ").map(v => v.charAt(0).toUpperCase() + v.substring(1).toLowerCase()).join(" ");
+// }
