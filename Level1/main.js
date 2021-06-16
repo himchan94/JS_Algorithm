@@ -769,3 +769,144 @@
 // function solution(s) {
 //   return s.split(" ").map(v => v.charAt(0).toUpperCase() + v.substring(1).toLowerCase()).join(" ");
 // }
+//########################################################### 행렬의 곱셈
+
+// let a = [
+//   [1, 2, 3],
+//   [4, 5, 6]
+// ];
+// let b = [
+//   [1, 4],
+//   [2, 5],
+//   [3, 6]
+// ];
+
+// function solution(arr1, arr2){
+//   var answer = []
+//   var sum = 0
+//   var temp = []
+//   for(var i=0; i<arr1.length; i++){
+//     for(var k=0; k<arr2[0].length; k++){
+//       for(var j=0; j<arr2.length; j++){
+//         sum = sum + arr1[i][j] * arr2[j][k]
+//       }
+//       temp.push(sum)
+//       sum = 0
+//     }
+//     answer.push(temp)
+//     temp = []
+//   }
+//   return answer
+// }
+
+// function solution(arr1, arr2) {
+//   let answer = [];
+//   let temp = [];
+//   let sum = 0;
+
+//   for (let i = 0; i < arr1.length; i++) {
+//     // 0 1 2
+//     for (let j = 0; j < arr1[0].length; j++) {
+//       for (let k = 0; k < arr2.length; k++) {
+//         sum += arr1[i][k] * arr2[k][j];
+//       }
+//       temp.push(sum);
+//       sum = 0;
+//     }
+//     answer.push(temp);
+//     temp = [];
+//   }
+
+//   return answer;
+// }
+
+// console.log(solution(a,b))
+
+// https://programmers.co.kr/questions/7976
+
+//########################################################### 피보나치 수
+
+// function solution(n) {
+//   let arr = [0, 1]; // 0 ->0 1 ->1 2 -> 1 3 -> 2
+
+//   if (n === 1) {
+//     return 1%1234567;
+//   }
+
+//   for (let i = 2; i < n; i++) {
+//     arr[i] = (arr[i - 2] + arr[i - 1])%1234567;
+//   }
+
+//   return (arr[n - 2] + arr[n - 1])%1234567;
+// }
+
+// console.log(solution(2))
+
+//## 재귀로 풀면 시간초과나옴
+
+//########################################################### 최솟값 만들기
+// let a = [1, 4, 2];
+// let b = [5, 4, 4];
+
+// function solution(a, b) {
+//   a.sort((a, b) => a - b);
+//   b.sort((a, b) => b - a);
+
+//   return a.reduce((acc, cur, idx) => acc + cur * b[idx], 0);
+// }
+
+// console.log(solution(a, b));
+
+//########################################################### 최댓값과 최솟값
+
+// let a = "1 2 3 4";
+
+// function solution(s) {
+//   let ans = [];
+//   let str = s.split(" ").sort((a, b) => b - a);
+//   ans.push(str[str.length - 1]);
+//   ans.push(str[0]);
+
+//   return ans.join(" ");
+// }
+
+// console.log(solution(a));
+
+//########################################################## 숫자의 표현
+
+// let a = 15;
+
+// function solution(n) {
+//   let cnt = 0;
+//   let sum = 0;
+//   for (let i = 1; i < n + 1; i++) {
+//     sum = 0;
+//     let number = i;
+//     while (sum < n) {
+//       sum += number;
+//       number += 1;
+//       if (sum === n) {
+//         cnt += 1;
+//         sum = 0;
+//         break;
+//       }
+//     }
+//   }
+
+//   return cnt;
+// }
+
+// console.log(solution(15));
+
+// function expressions(num) {
+//   var answer = 0;
+
+// for(var i=1; i<=num; i++) {  // 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+//   if (num%i == 0 && i%2 == 1)  //
+//     answer++
+// }
+//   return answer;
+// }
+
+// // 아래는 테스트로 출력해 보기 위한 코드입니다.
+// console.log(expressions(a));
