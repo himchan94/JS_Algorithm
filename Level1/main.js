@@ -910,3 +910,130 @@
 
 // // 아래는 테스트로 출력해 보기 위한 코드입니다.
 // console.log(expressions(a));
+
+//########################################################## 땅따먹기 동적계획법
+
+//[[1,2,3,5]
+//[5,6,7,8]
+// [4,3,2,1]]
+
+// let a = [
+//   [4, 3, 2, 1],
+//   [2, 2, 2, 1],
+//   [6, 6, 6, 4],
+//   [8, 7, 6, 5]
+// ];
+
+// function solution(land) {
+//   var answer = 0;
+//   var len = land.length;
+
+//   for(var i =len-2; i>=0; i--){
+//     land[i][0] = Math.max(land[i+1][1], land[i+1][2], land[i+1][3])+land[i][0];
+//     land[i][1] = Math.max(land[i+1][0], land[i+1][2], land[i+1][3])+land[i][1];
+//     land[i][2] = Math.max(land[i+1][0], land[i+1][1], land[i+1][3])+land[i][2];
+//     land[i][3] = Math.max(land[i+1][0], land[i+1][1], land[i+1][2])+land[i][3];
+//  }
+//  answer = Math.max(...land[0]); /***포인트!!***/
+
+//     return answer;
+// }
+
+// function solution(arr) {
+//   let temp_index;
+//   let sum = 0;
+
+//   sum += Math.max(...arr[0]);
+//   temp_index = arr[0].indexOf(Math.max(...arr[0]));
+//   console.log("first sum", sum);
+
+//   for (let i = 1; i < arr.length; i++) {
+//     let new_arr = arr[i].map((l, idx) => {
+//       if (idx === temp_index) {
+//         return false;
+//       } else return l; // 다음 행렬중 같은 인덱스에 더 작은 값인지 큰값인지 고려해야함
+//     });
+
+//     sum += Math.max(...new_arr);
+//     console.log("added", sum);
+//     temp_index = new_arr.indexOf(Math.max(...new_arr));
+//     // console.log(temp_index);
+
+//     // temp_index = arr[i].filter((l,idx)=>l!==temp_index) // temp_index와 다른 값
+//     // console.log(arr[i].filter((l,idx)=>idx!==temp_index))
+//   }
+
+//   console.log(sum);
+// }
+
+// console.log(solution(a));
+
+// function solution(land) {
+//   let temp_idx = 0;
+//   let is_first = true;
+//   let sum = 0;
+
+//   for (let i = 0; i < land.length; i++) {
+//     let index = land[i].findIndex((l, idx) => {
+//       if (is_first) {
+//         if (l === Math.max(...land[i])) {
+//           is_first = false;
+//           return l;
+//         }
+//       } else {
+//         let new_arr = land[i];
+//         new_arr.splice(temp_idx, 1);
+//         if (l === Math.max(...new_arr)) {
+//           return l;
+//         }
+//       }
+//     });
+//     console.log(index);
+//     temp_idx = index;
+//     sum += land[i][index];
+//   }
+//   return sum;
+// }
+
+// console.log(solution(a));
+
+//##########################################################
+
+// let test = [1, 2, 3, 4];
+
+// function change(arr) {
+//   console.log(arr);
+//   arr[0] = 7;
+//   console.log(arr);
+// }
+
+// change(test)
+
+//########################################################## 다음 큰 숫자
+// let a = 15;
+
+// function solution(n) {
+//   let first_value = count_one(n.toString(2));
+
+//   while (true) {
+//     n++;
+//     if (first_value === count_one(n.toString(2))) {
+//       break;
+//     }
+//   }
+//   console.log(n);
+// }
+
+// function count_one(number) {
+//   let cnt = 0;
+//   number.split("").forEach((l, idx) => {
+//     if (l === "1") {
+//       cnt += 1;
+//     }
+//   });
+//   return cnt;
+// }
+
+// console.log(solution(a));
+
+// 비트연산자를 활용한 풀이 한 번 봐!!
