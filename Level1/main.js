@@ -1037,3 +1037,115 @@
 // console.log(solution(a));
 
 // 비트연산자를 활용한 풀이 한 번 봐!!
+
+//########################################################## 방금 그곡
+let a = "ABC";
+let b = ["12:00,12:14,HELLO,CDEFGAB", "13:00,13:14,WORLD,ABCDEF"];
+// 시간 먼저 구함 -> 시간과 음정보 길이 확인
+
+function solution(m, musicinfos) {
+  let ans = [];
+
+  let newM = m
+    .replace(/(C#)/g, "c")
+    .replace(/(D#)/g, "d")
+    .replace(/(F#)/g, "f")
+    .replace(/(G#)/g, "g")
+    .replace(/(A#)/g, "a")
+    .replace(/(E#)/g, "e");
+
+  let newMusicInfos = musicinfos.map((str) =>
+    str
+      .replace(/(C#)/g, "c")
+      .replace(/(D#)/g, "d")
+      .replace(/(F#)/g, "f")
+      .replace(/(G#)/g, "g")
+      .replace(/(A#)/g, "a")
+      .replace(/(E#)/g, "e")
+  );
+
+  let reg = /c|C|d|D|E|f|F|g|G|a|A|B|e/gm;
+
+  let regx = new RegExp(newM, "gm");
+  let n = 1;
+
+  for (let i = 0; i < newMusicInfos.length; i++) {
+    let time = getTime(newMusicInfos[i]);
+    let title = newMusicInfos[i].split(",")[2];
+    let sound = newMusicInfos[i].split(",")[3].match(reg); // ["c","d","e","f","f","a","b"]
+    let repeated = Array.apply(null, Array(time)).map((l, idx) => {
+      return sound[idx % sound.length];
+    });
+
+    if (repeated.join("").match(regx) !== null) {
+      let obj = new Object();
+      obj.name = title;
+      obj.time = time;
+      obj.length = title.length;
+      obj.order = n;
+      ans.push(obj);
+      n++;
+    }
+  }
+
+  if (ans.length === 0) {
+    return "(None)";
+  }
+
+  if (ans.length === 1) {
+    return ans[0]["name"];
+  } else {
+    // 1.출력시간 2.길이
+    ans.sort((a, b) => b["time"] - a["time"]);
+
+    let maxTime = ans[0]["time"];
+
+    let timeChecked = ans.filter((l, idx) => {
+      if (l.time === maxTime) {
+        return l;
+      }
+    });
+
+    if (timeChecked.length === 1) {
+      return timeChecked[0].name;
+    } else {
+      timeChecked.sort((a, b) => b.length - a.length);
+      let maxLength = timeChecked[0].length;
+      let lengthChecked = timeChecked.filter((l, idx) => {
+        if (l.length === maxLength) {
+          return l;
+        }
+      });
+
+      if (lengthChecked.length === 1) {
+        return lengthChecked[0].name;
+      }
+      lengthChecked.sort((a, b) => a.order - b.orer);
+      return lengthChecked[0].name;
+    }
+  }
+}
+
+function getTime(str) {
+  let regx = /\d\d/gm;
+  let result = str.match(regx);
+  let hours = parseInt(result[2]) - parseInt(result[0]);
+  let min = parseInt(result[3]) - parseInt(result[1]);
+
+  return hours * 60 + min;
+}
+
+console.log(solution(a, b));
+
+// let test = "C#DEFGABC#DEFGAB";
+// let test2 = "ABC";
+
+// let made = new RegExp("^#" + test2 + "^#", "gm"); // 생성자
+// console.log(made);
+
+// let check = false;
+// let reg = /C#|C|D#|D|E|F#|F|G#|G|A#|A|B/gm;
+
+// console.log(test.match(made));
+
+//[A, B, C] ["12:00,12:14,HELLO,CDEFGAB", "13:00,13:14,WORLD,ABCDEF"] -> [HELLO] 테스트 케이스 추가해보세요
