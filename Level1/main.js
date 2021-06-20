@@ -1039,113 +1039,129 @@
 // 비트연산자를 활용한 풀이 한 번 봐!!
 
 //########################################################## 방금 그곡
-let a = "ABC";
-let b = ["12:00,12:14,HELLO,CDEFGAB", "13:00,13:14,WORLD,ABCDEF"];
-// 시간 먼저 구함 -> 시간과 음정보 길이 확인
+// let a = "ABC";
+// let b = ["12:00,12:14,HELLO,CDEFGAB", "13:00,13:14,WORLD,ABCDEF"];
+// // 시간 먼저 구함 -> 시간과 음정보 길이 확인
 
-function solution(m, musicinfos) {
-  let ans = [];
+// function solution(m, musicinfos) {
+//   let ans = [];
 
-  let newM = m
-    .replace(/(C#)/g, "c")
-    .replace(/(D#)/g, "d")
-    .replace(/(F#)/g, "f")
-    .replace(/(G#)/g, "g")
-    .replace(/(A#)/g, "a")
-    .replace(/(E#)/g, "e");
+//   let newM = m
+//     .replace(/(C#)/g, "c")
+//     .replace(/(D#)/g, "d")
+//     .replace(/(F#)/g, "f")
+//     .replace(/(G#)/g, "g")
+//     .replace(/(A#)/g, "a")
+//     .replace(/(E#)/g, "e");
 
-  let newMusicInfos = musicinfos.map((str) =>
-    str
-      .replace(/(C#)/g, "c")
-      .replace(/(D#)/g, "d")
-      .replace(/(F#)/g, "f")
-      .replace(/(G#)/g, "g")
-      .replace(/(A#)/g, "a")
-      .replace(/(E#)/g, "e")
-  );
+//   let newMusicInfos = musicinfos.map((str) =>
+//     str
+//       .replace(/(C#)/g, "c")
+//       .replace(/(D#)/g, "d")
+//       .replace(/(F#)/g, "f")
+//       .replace(/(G#)/g, "g")
+//       .replace(/(A#)/g, "a")
+//       .replace(/(E#)/g, "e")
+//   );
 
-  let reg = /c|C|d|D|E|f|F|g|G|a|A|B|e/gm;
+//   let reg = /c|C|d|D|E|f|F|g|G|a|A|B|e/gm;
 
-  let regx = new RegExp(newM, "gm");
-  let n = 1;
+//   let regx = new RegExp(newM, "gm");
+//   let n = 1;
 
-  for (let i = 0; i < newMusicInfos.length; i++) {
-    let time = getTime(newMusicInfos[i]);
-    let title = newMusicInfos[i].split(",")[2];
-    let sound = newMusicInfos[i].split(",")[3].match(reg); // ["c","d","e","f","f","a","b"]
-    let repeated = Array.apply(null, Array(time)).map((l, idx) => {
-      return sound[idx % sound.length];
-    });
+//   for (let i = 0; i < newMusicInfos.length; i++) {
+//     let time = getTime(newMusicInfos[i]);
+//     let title = newMusicInfos[i].split(",")[2];
+//     let sound = newMusicInfos[i].split(",")[3].match(reg); // ["c","d","e","f","f","a","b"]
+//     let repeated = Array.apply(null, Array(time)).map((l, idx) => {
+//       return sound[idx % sound.length];
+//     });
 
-    if (repeated.join("").match(regx) !== null) {
-      let obj = new Object();
-      obj.name = title;
-      obj.time = time;
-      obj.length = title.length;
-      obj.order = n;
-      ans.push(obj);
-      n++;
-    }
-  }
+//     if (repeated.join("").match(regx) !== null) {
+//       let obj = new Object();
+//       obj.name = title;
+//       obj.time = time;
+//       obj.length = title.length;
+//       obj.order = n;
+//       ans.push(obj);
+//       n++;
+//     }
+//   }
 
-  if (ans.length === 0) {
-    return "(None)";
-  }
+//   if (ans.length === 0) {
+//     return "(None)";
+//   }
 
-  if (ans.length === 1) {
-    return ans[0]["name"];
-  } else {
-    // 1.출력시간 2.길이
-    ans.sort((a, b) => b["time"] - a["time"]);
+//   if (ans.length === 1) {
+//     return ans[0]["name"];
+//   } else {
+//     // 1.출력시간 2.길이
+//     ans.sort((a, b) => b["time"] - a["time"]);
 
-    let maxTime = ans[0]["time"];
+//     let maxTime = ans[0]["time"];
 
-    let timeChecked = ans.filter((l, idx) => {
-      if (l.time === maxTime) {
-        return l;
-      }
-    });
+//     let timeChecked = ans.filter((l, idx) => {
+//       if (l.time === maxTime) {
+//         return l;
+//       }
+//     });
 
-    if (timeChecked.length === 1) {
-      return timeChecked[0].name;
-    } else {
-      timeChecked.sort((a, b) => b.length - a.length);
-      let maxLength = timeChecked[0].length;
-      let lengthChecked = timeChecked.filter((l, idx) => {
-        if (l.length === maxLength) {
-          return l;
-        }
-      });
+//     if (timeChecked.length === 1) {
+//       return timeChecked[0].name;
+//     } else {
+//       timeChecked.sort((a, b) => b.length - a.length);
+//       let maxLength = timeChecked[0].length;
+//       let lengthChecked = timeChecked.filter((l, idx) => {
+//         if (l.length === maxLength) {
+//           return l;
+//         }
+//       });
 
-      if (lengthChecked.length === 1) {
-        return lengthChecked[0].name;
-      }
-      lengthChecked.sort((a, b) => a.order - b.orer);
-      return lengthChecked[0].name;
-    }
-  }
-}
+//       if (lengthChecked.length === 1) {
+//         return lengthChecked[0].name;
+//       }
+//       lengthChecked.sort((a, b) => a.order - b.orer);
+//       return lengthChecked[0].name;
+//     }
+//   }
+// }
 
-function getTime(str) {
-  let regx = /\d\d/gm;
-  let result = str.match(regx);
-  let hours = parseInt(result[2]) - parseInt(result[0]);
-  let min = parseInt(result[3]) - parseInt(result[1]);
+// function getTime(str) {
+//   let regx = /\d\d/gm;
+//   let result = str.match(regx);
+//   let hours = parseInt(result[2]) - parseInt(result[0]);
+//   let min = parseInt(result[3]) - parseInt(result[1]);
 
-  return hours * 60 + min;
-}
+//   return hours * 60 + min;
+// }
 
-console.log(solution(a, b));
+// console.log(solution(a, b));
 
-// let test = "C#DEFGABC#DEFGAB";
-// let test2 = "ABC";
+// function solution(m, musicinfos) {
+//   const _m = m.replace(/(\D)#/g, (s, p1) => p1.toLowerCase());
 
-// let made = new RegExp("^#" + test2 + "^#", "gm"); // 생성자
-// console.log(made);
+//   const broadcast = musicinfos.map((x) => {
+//     const info = x.split(",");
+//     const song = info[3].replace(/(\D)#/g, (s, p1) => p1.toLowerCase());
+//     return [
+//       info[2],
+//       play(toMinute(info[1].split(":")) - toMinute(info[0].split(":")), song),
+//     ];
+//   });
+//   const answer = broadcast.reduce((answer, x) => {
+//     if (x[1].includes(_m)) {
+//       if (answer.length == 0 || answer[1].length < x[1].length) return x;
+//     }
+//     return answer;
+//   }, []);
+//   return answer.length == 0 ? "(None)" : answer[0];
+// }
 
-// let check = false;
-// let reg = /C#|C|D#|D|E|F#|F|G#|G|A#|A|B/gm;
+// function toMinute(t) {
+//   return t[0] * 60 + t[1] * 1;
+// }
 
-// console.log(test.match(made));
-
-//[A, B, C] ["12:00,12:14,HELLO,CDEFGAB", "13:00,13:14,WORLD,ABCDEF"] -> [HELLO] 테스트 케이스 추가해보세요
+// function play(time, song) {
+//   const length = song.length;
+//   return song.repeat(time / length) + song.substring(0, time % length);
+// }
