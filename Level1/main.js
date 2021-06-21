@@ -1165,3 +1165,264 @@
 //   const length = song.length;
 //   return song.repeat(time / length) + song.substring(0, time % length);
 // }
+
+//########################################################## 방문길이
+// U: 위쪽으로 한 칸 가기
+
+// D: 아래쪽으로 한 칸 가기
+
+// R: 오른쪽으로 한 칸 가기
+
+// L: 왼쪽으로 한 칸 가기
+
+// function solution(dirs) {
+//   let ans = [];
+//   let target = { x: 0, y: 0 };
+//   let new_ans = [];
+
+//   for (let i = 0; i < dirs.length; i++) {
+//     let obj = new Object();
+//     switch (dirs[i]) {
+//       case "U":
+//         target.y += 1;
+//         obj.x = target.x;
+//         obj.y = target.y;
+//         ans.push(obj);
+//         break;
+
+//       case "D":
+//         target.y -= 1;
+//         obj.x = target.x;
+//         obj.y = target.y;
+//         ans.push(obj);
+//         break;
+
+//       case "R":
+//         target.x += 1;
+//         obj.x = target.x;
+//         obj.y = target.y;
+//         ans.push(obj);
+//         break;
+
+//       case "L":
+//         target.x -= 1;
+//         obj.x = target.x;
+//         obj.y = target.y;
+//         ans.push(obj);
+//         break;
+
+//       default:
+//         break;
+//     }
+//   }
+//   ans.forEach((l, idx) => {});
+// }
+
+// console.log(solution("ULURRDLLU"));
+
+// function solution(dirs) {
+//   var answer = 0;
+//   const defaultLocation = { x: 0, y: 0 };
+//   const path = {};
+//   for (let move of dirs) {
+//     let currentLocation = `${defaultLocation.x}${defaultLocation.y}`;
+//     switch (move) {
+//       case "U":
+//         if (defaultLocation.x + 1 <= 5) defaultLocation.x += 1;
+//         break;
+//       case "D":
+//         if (defaultLocation.x - 1 >= -5) defaultLocation.x -= 1;
+//         break;
+//       case "R":
+//         if (defaultLocation.y + 1 <= 5) defaultLocation.y += 1;
+//         break;
+//       case "L":
+//         if (defaultLocation.y - 1 >= -5) defaultLocation.y -= 1;
+//         break;
+//     }
+//     let movedLocation = `${defaultLocation.x}${defaultLocation.y}`;
+//     if (currentLocation === movedLocation) continue;
+//     else {
+//       const resultLocation = currentLocation + " to " + movedLocation;
+//       console.log(resultLocation)
+//       const reverseLocation = movedLocation + " to " + currentLocation;
+//       console.log(reverseLocation)
+//       if (path[resultLocation] !== 1 && path[reverseLocation] !== 1)
+//         path[resultLocation] = 1;
+//         console.log(path)
+//     }
+//   }
+//   answer = Object.keys(path).length;
+//   return answer;
+// }
+
+// function solution(dirs) {
+//   let answer = [];
+//   let gps = [0, 0];
+//   dirs.split("").forEach((value) => {
+//     let ret = false;
+//     const pre_gps = gps.concat();
+//     if (value == "U" && gps[1] < 5) {
+//       gps[1] += 1;
+//       ret = true;
+//     } else if (value == "D" && gps[1] > -5) {
+//       gps[1] -= 1;
+//       ret = true;
+//     } else if (value == "R" && gps[0] < 5) {
+//       gps[0] += 1;
+//       ret = true;
+//     } else if (value == "L" && gps[0] > -5) {
+//       gps[0] -= 1;
+//       ret = true;
+//     }
+//     //길은 양뱡향이 아닌 단방향으로 취급("L,R" => ret : 1)
+//     const filter = answer.filter((item) => {
+//       return (
+//         (item[0] == pre_gps[0] &&
+//           item[1] == pre_gps[1] &&
+//           item[2] == gps[0] &&
+//           item[3] == gps[1]) ||
+//         (item[0] == gps[0] &&
+//           item[1] == gps[1] &&
+//           item[2] == pre_gps[0] &&
+//           item[3] == pre_gps[1])
+//       );
+//     });
+//     if (ret && filter.length == 0) answer.push(pre_gps.concat(gps));
+//   });
+
+//   return answer.length;
+// }
+
+// let test = [0, 0];
+// console.log(test.concat());
+
+// var arrOfObj = [
+//   {
+//     name:'abc',age:27
+//   },
+//   {
+//     name:'pqr',age:27
+//   },
+//   {
+//     name:'abc',age:27
+//   },
+//  ]
+// var dataArr = arrOfObj.map(item=>{
+//     return [item.name,item]
+// }); // creates array of array
+
+// console.log("dataArr",dataArr)
+// var maparr = new Map(dataArr); // create key value pair from array of array
+
+// console.log(maparr)
+
+// var result = [...maparr.values()];//converting back to array from mapobject
+
+// console.log(result); //[{"name":"abc","age":27},{"name":"pqr","age":27}]
+
+//########################################################## 쿼드압축
+
+// function quad(array, size, countArray, start) {
+//   const first = array[start[0]][start[1]]; // 시작 지점의 값
+//   if (size === 1) {
+//     // size가 1이면 마지막이다. first 값에 따라서 countArray의 값을 증가시켜준다.
+//     first === 0 ? (countArray[0] += 1) : (countArray[1] += 1);
+//     return;
+//   }
+
+//   const half = size / 2; // 정사각형의 절반 가로, 세로 동일
+//   let keep = true;
+
+//   for (let i = start[0]; i < start[0] + size; i++) {
+//     for (let j = start[1]; j < start[1] + size; j++) {
+//       // 모든 값이 다 같은지 확인한다. 하나라도 다르면 keep을 false로 변경
+//       if (first !== array[i][j]) {
+//         keep = false;
+//         break;
+//       }
+//     }
+//     if (!keep) break;
+//   }
+//   // keep이 true일 경우 모두가 다 같다는 뜻이므로, 하나만 확인하여 증가시켜 주면 된다. 그리고 안에 더 확인할 필요가 없으니 return
+//   if (keep) {
+//     first === 0 ? countArray[0]++ : countArray[1]++;
+//     return;
+//   }
+//   // keep이 false 일 경우 4등분하여 다시 해주면 된다.
+//   quad(array, half, countArray, start);
+//   quad(array, half, countArray, [start[0], start[1] + half]);
+//   quad(array, half, countArray, [start[0] + half, start[1]]);
+//   quad(array, half, countArray, [start[0] + half, start[1] + half]);
+//   return;
+// }
+
+// function solution(arr) {
+//   const countArray = [0, 0];
+//   const size = arr.length;
+//   quad(arr, size, countArray, [0, 0]);
+//   return countArray;
+// }
+
+// console.log(solution([[1,1,0,0],[1,0,0,0],[1,0,0,1],[1,1,1,1]]	))
+
+//########################################################## 스킬트리
+// let a = "CBD";
+// let b = ["BACDE", "CBADF", "AECB", "BAD"];
+
+// function solution(skill, skill_trees) {
+//   let skillOrder = skill.split("");
+//   let orderCheck = [];
+
+//   for (let i = 0; i < skill_trees.length; i++) {
+//     let skill = skill_trees[i].split(""); // B A C D E  CBD의 인덱스값 찾아 배열에 넣기
+//     for (let j = 0; j < skill.length; j++) {
+//       for (let k = 0; k < skillOrder.length; k++) {
+//         if (skill[j] === skillOrder[k]) {
+//           orderCheck.push(skill[j]);
+//         }
+//       }
+//     }
+
+//     orderCheck.forEach((l,idx)=>{})
+//   }
+
+//   console.log(orderCheck);
+// }
+
+// console.log(solution(a, b));
+
+// let test1 = "abcde"
+// let test2 = [1,2]
+
+// console.log(test1.substring(0,4))
+
+// function solution(skill, skill_trees) {
+//   let newArr = skill.split("");
+//   let str = 0;
+//   let count = 0;
+//   for (let i = 0; i < skill_trees.length; i++) {
+//     str = skill_trees[i]
+//       .split("")
+//       .filter((element) => newArr.includes(element))
+//       .join("");
+//       console.log("str",str)
+//     console.log(skill.substring(0, str.length));
+//     if (str === skill.substring(0, str.length)) {
+//       count++;
+//     }
+//   }
+//   return count;
+// }
+
+// function solution(skill, skill_trees) {
+//     var answer = 0;
+//     var regex = new RegExp(`[^${skill}]`, 'g');
+
+//     return skill_trees
+//         .map((x) => x.replace(regex, ''))
+//         .filter((x) => {
+//             return skill.indexOf(x) === 0 || x === "";
+//         })
+//         .length
+// }
