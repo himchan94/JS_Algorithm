@@ -1426,3 +1426,224 @@
 //         })
 //         .length
 // }
+
+//##########################################################점프와 순간이동
+
+// 1 :점프 1
+// 2 점프 1 순간이동 1
+// 3 : 점프 1 순간이동 1 점프 1
+// 4 : 점프 2 순간이동 2
+// 5 : 점프 1 순간이동 2 순간이동 4 점프 1
+// 6 : 점프 1 순간 2 점프 3 순간 6 점프 1
+// 7 : 점프 1 순간 2 점프 3 순간 6 점프 1
+// 8 : 점프 1 순간 2 순간 4 순간 8
+// 9 : 점프 1 순간 2 순간 4 순간 8 점프 1
+// 10 :
+
+// 동적계획법 문제
+// function solution(n) {
+//   var answer = 0;
+
+//   while (n > 0) {
+//     if (n % 2 == 0) {
+//       n /= 2;
+//     } else {
+//       n -= 1;
+//       answer += 1;
+//     }
+//   }
+
+//   return answer;
+// }
+
+// console.log(solution(5000));
+
+// let test = 4999
+
+// console.log(Array.from(test.toString(2)))
+//##########################################################이진변환 반복하기
+
+// function solution(s) {
+//   var answer = [0, 0];
+
+//   makeNew(s, answer);
+
+//   return answer;
+// }
+
+// function makeNew(s, score) {
+//   let arr = s.split("");
+
+//   if (s === "1") {
+//     return;
+//   }
+
+//   score[0] += 1;
+//   let newArr = arr.filter((l, idx) => {
+//     if (l === "0") {
+//       score[1] += 1;
+//     }
+
+//     if (l !== "0") {
+//       return l;
+//     }
+//   });
+//   console.log(newArr.length);
+//   let lenToStr = newArr.length.toString(2);
+//   console.log(lenToStr);
+
+//   return makeNew(lenToStr, score);
+// }
+
+// console.log(solution("1111111"));
+
+// ######################## 실험
+// function test(a) {
+//   sum(a);
+
+//   return a;
+// }
+
+// function sum(a) {
+//   a[0] += 1;
+// }
+
+// console.log(test([0, 0]);
+// ######################## 실험
+
+// ######################## 구명보트
+
+// let a = [70];
+// let b = 100;
+
+// function solution(people, limit) {
+//   let ans = [];
+
+//   for (let i = 0; i < people.length; i++) {
+//     if (people[i] <= limit) {
+//       for (let j = i + 1; j < people.length; j++) {
+//         let Arr = new Array();
+//         if (people[i] + people[j] <= limit) {
+//           Arr.push(people[i]);
+//           Arr.push(people[j]);
+//           ans.push(Arr);
+//         }
+//       }
+//     }
+//   }
+
+//   for (let k = 0; k < ans.length; k++) {
+//     ans[k].forEach((l, idx) => {
+//       people.splice(
+//         people.findIndex((idx) => idx === l),
+//         1
+//       );
+//     });
+//   }
+
+//   return people.length + ans.length;
+// }
+
+// function solution(people, limit){
+// 	var answer = 0
+//     people.sort((a,b) => b-a)
+//     let l = 0
+//     let r = people.length-1
+
+//     while(l<r){
+//     	var sum = people[l] + people[r]
+//         if(sum>limit){
+//         	l++
+//         } else {
+//         	l++
+//             r--
+//         }
+//         answer++
+//     }
+//     if(l == r) answer++
+//     return answer
+// }
+
+// function solution(people, limit) {
+//     people.sort(function(a, b){return a-b});
+//     for(var i=0, j=people.length-1; i < j; j--) {
+//         if( people[i] + people[j] <= limit ) i++;
+//     }
+//     return people.length-i;
+// }
+
+// console.log(solution(a, b));
+
+// let test = [1, 2, 3, 4];
+
+// test.splice(1, 1);
+
+// console.log(test);
+
+// ############################### 1차 캐시
+
+// let size = 2;
+// let city = ["Jeju", "Pangyo", "NewYork", "newyork"];
+
+// function solution(cacheSize, cities) {
+//   let cache = [];
+//   let time = 0;
+
+//   // cache hit일 경우 실행시간은 1이다.
+//   // cache miss일 경우 실행시간은 5이다.
+
+//   cities
+//     .map((l, idx) => l.toUpperCase())
+//     .forEach((l, idx) => {
+//       if (cache.findIndex((city) => city === l) === -1) {
+//         cache.push(l);
+//         time += 5;
+//         if (cache.length > cacheSize) {
+//           cache.shift();
+//         }
+//       } else {
+//         let index = cache.findIndex((city) => city === l);
+//         cache.push(...cache.splice(index, 1));
+//         time += 1;
+//       }
+//     });
+
+//   // console.log(cache);
+//   // console.log(time);
+//   return time;
+// }
+
+// console.log(solution(size, city));
+
+// // let test = [1, 2, 3, 4];
+// // console.log(test.push(...test.splice(0, 1)));
+// // console.log(test);
+
+// let test = "apple";
+
+// console.log(test.toUpperCase);
+
+// ############################### 영어 끝말있기
+
+// let a = [
+//   "tank",
+//   "kick",
+//   "know",
+//   "wheel",
+//   "land",
+//   "dream",
+//   "mother",
+//   "robot",
+//   "tank"
+// ];
+
+// function solution(n, words) {
+// let temp = []
+
+// for(let i = 0; i<words.length; i++){
+
+// }
+
+// }
+
+// console.log(solution(3, a));
