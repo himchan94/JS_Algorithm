@@ -1647,3 +1647,124 @@
 // }
 
 // console.log(solution(3, a));
+
+// ############################### 프렌즈 4 블록
+
+//m은 판의 높이 n은 폭
+// let a = 4;
+// let b = 5;
+// let c = ["CCBDE", "AAADE", "AAABF", "CCBBF"];
+
+// function solution(m, n, board) {
+//   board = board.map((v) => v.split(""));
+//   // console.log(board);
+
+//   while (true) {
+//     let founded = [];
+
+//     // 찾기 - 네 개중 우측 하단 모서리 인덱스 기준
+//     for (let i = 1; i < m; i++) {
+//       for (let j = 1; j < n; j++) {
+//         if (
+//           board[i][j] &&
+//           board[i][j] === board[i][j - 1] &&
+//           board[i][j] === board[i - 1][j - 1] &&
+//           board[i][j] === board[i - 1][j]
+//         ) {
+//           founded.push([i, j]);
+//         }
+//       }
+//     }
+
+//     if (!founded.length) return [].concat(...board).filter((v) => !v).length; // 0의 갯수를 세면 없어진 것들의 갯수
+
+//     // 부수기 - 지워질 것 0으로 채우기
+//     founded.forEach((a) => {
+//       board[a[0]][a[1]] = 0;
+//       board[a[0]][a[1] - 1] = 0;
+//       board[a[0] - 1][a[1] - 1] = 0;
+//       board[a[0] - 1][a[1]] = 0;
+//     });
+
+//     for (let i = m - 1; i > 0; i--) {
+//       // console.log("i", i);
+//       // console.log(board[i].some((v) => !v));
+//       if (!board[i].some((v) => !v)) continue; // 0이 있으면 다음 i로 넘어가므
+
+//       for (let j = 0; j < n; j++) {
+//         for (let k = i - 1; k >= 0 && !board[i][j]; k--) {
+//           // console.log("k", k);
+//           // console.log("board", board[k][j]);
+//           if (board[k][j]) {
+//             board[i][j] = board[k][j];
+//             board[k][j] = 0;
+//             // console.log(board);
+//             break;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// console.log(solution(a, b, c));
+
+// if (!founded.length) return [].concat(...board).filter((v) => !v).length;
+
+// let test1 = [];
+
+// console.log(test1.concat(...test).filter((l) => l));
+// console.log(test.some((l) => !l));
+// console.log([].concat(...c.map((v) => v.split(""))));
+
+// let test = [];
+
+// if (!test[0]) {
+//   // 뒷 부분이 아닐때 false일 때
+//   console.log("hi");
+// }
+
+// let test = [];
+// let test1 = 0;
+
+// for (let i = 0; i < 3; i++) {
+//   test.push(1);
+//   test1++;
+//   console.log(`test${i}`, test);
+//   console.log(test1);
+// }
+
+// var color = "red";
+// function foo() {
+//   var color = "blue";
+
+//   //bar는 외부 렉시컬 환경 참조로 foo의 color를 저장
+//   function bar() {
+//     console.log(color);
+//   }
+
+//   return bar;
+// }
+
+// function celebrityName(firstName) {
+//   var nameIntro = "This is celebrity is ";
+//   // 이 내부 함수는 외부함수의 파라미터에 접근할 수 있습니다.
+//   function lastName(theLastName) {
+//     return nameIntro + firstName + " " + theLastName;
+//   }
+//   return lastName;
+// }
+
+// var kName = celebrityName("kang"); // 여기서 celebrityName 외부함수가 리턴됩니다
+// // 외부함수가 위에서 리턴된 후에, Closure(lastName)가 호출됩니다.
+// // 아직, Closure는 외부함수의 변수와 파라미터에 접근 가능합니다.
+// kName("dave"); // Output 'This is celebrity is kang dave'
+
+// console.log(kName("dave"));
+
+// let flag = true;
+
+// for (var i = 0; i < 9 && flag; i++) {
+//   console.log(i);
+//   // 기타 등등
+// }
