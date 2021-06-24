@@ -1768,3 +1768,7 @@
 //   console.log(i);
 //   // 기타 등등
 // }
+
+for (var i = 0; i < 3; i++) {
+  console.log(i);
+}
