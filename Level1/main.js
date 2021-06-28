@@ -1769,6 +1769,36 @@
 //   // 기타 등등
 // }
 
-for (var i = 0; i < 3; i++) {
-  console.log(i);
-}
+// for (var i = 0; i < 3; i++) {
+//   console.log(i);
+// }
+
+// ##########################################카펫
+
+// let a = 8;
+// let b = 1;
+
+// function solution(brown, yellow) {
+//   let n = 1;
+//   let width;
+//   let height;
+
+//   while (true) {
+//     if (n > yellow) {
+//       break;
+//     }
+
+//     if (yellow % n === 0) {
+//       width = yellow / n + 2;
+//       height = n + 2;
+//       if (width * height === brown + yellow) {
+//         break;
+//       }
+//     }
+//     n++;
+//   }
+
+//   return [width, height];
+// }
+
+// console.log(solution(a, b));
