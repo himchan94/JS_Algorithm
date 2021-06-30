@@ -1854,3 +1854,81 @@
 // }
 
 // console.log(solution(a, b, c));
+
+// ################################## H-index
+
+// let a = [3, 0, 6, 1, 5];
+
+// //3편의 논문이 3회 이상 인용됨
+// // 나머지 2편은 3회 이하 인용됨
+
+// function solution(citations) {
+//   let H_index = [];
+
+//   for (let i = 0; i <= Math.max(...citations); i++) {
+//     let over = citations.filter((l) => l >= i).length;
+
+//     if (over >= i) {
+//       if (citations.length - over <= i) {
+//         H_index.push(i);
+//       }
+//     }
+//   }
+
+//   return Math.max(...H_index);
+// }
+
+// console.log(solution(a));
+
+//########################################괄호 회전하기
+// (), [], {}는 모두 올바른 괄호 문자열
+// 만약 A가 올바른 괄호 문자열이라면
+// (A), [A], {A}도 올바른 괄호 문자열
+// A B가 올바른 괄호 문자열이라면 AB도 올바른 괄호 문자열
+
+// let a = "}}}";
+
+// function solution(s) {
+//   let cnt = 0;
+//   for (let i = 0; i < s.length; i++) {
+//     let moved = move(s, i);
+//     correctFinder(moved) ? cnt++ : null;
+//   }
+
+//   return cnt;
+// }
+
+// function correctFinder(arr) {
+//   let splited = arr.split("");
+//   let temp = [];
+
+//   splited.forEach((l) => {
+//     if (l === "]" && temp[temp.length - 1] === "[") {
+//       temp.pop();
+//     } else if (l === ")" && temp[temp.length - 1] === "(") {
+//       temp.pop();
+//     } else if (l === "}" && temp[temp.length - 1] === "{") {
+//       temp.pop();
+//     } else {
+//       temp.push(l);
+//     }
+//   });
+//   return temp.length ? false : true;
+// }
+
+// function move(str, n = 0) {
+//   let splited = str.split("");
+//   let temp = [];
+
+//   if (n === 0) {
+//     return str;
+//   }
+
+//   for (let i = 0; i < n; i++) {
+//     let shifted = splited.shift();
+//     temp.push(shifted);
+//   }
+//   return splited.concat(temp).join("");
+// }
+
+// solution(a);
