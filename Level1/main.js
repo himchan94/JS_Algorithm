@@ -1950,3 +1950,56 @@
 
 //   return answer - 1;
 // }
+
+//######################################## 두 개 이하로 다른 비트
+
+//f(x) x보다 크고 x와 비트가 1~2개 다른 수들 중에서 가장 작은
+
+// 입력 [2,7]
+// 출력 [3,11]
+
+// let a = [2, 7];
+
+// function solution(numbers) {
+//   let answer = [];
+
+//   numbers.forEach((l, idx) => {
+//     let num = l.toString("" + 2);
+//     answer.push(findBit(num));
+//   });
+
+//   return answer;
+// }
+
+// console.log(solution(a));
+
+// function findBit(str) {
+//   let init = parseInt(str, 2); //1
+//   // console.log("init", init);
+//   while (true) {
+//     init++;
+//     let test = init
+//       .toString(2)
+//       .split("")
+//       .map((l, idx) => {
+//         // console.log("str", str[idx]);
+//         if (l !== str[idx]) {
+//           return 1;
+//         }
+//         return 0;
+//       });
+//     // console.log("init", init);
+//     // console.log(test);
+//     let total = test.reduce((acc, cur) => {
+//       return (acc += cur);
+//     }, 0);
+
+//     if (total === 1 || total === 2) {
+//       return init;
+//     }
+//   }
+// }
+
+// let test = 7;
+// console.log(test.toString(2));
+// console.log(findBit("0111"));
