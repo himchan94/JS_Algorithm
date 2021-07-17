@@ -2023,3 +2023,33 @@
 // }
 
 // console.log(solution(4));
+
+//######################################## 다리 위를 지나는 트럭
+
+let a = [7, 4, 5, 6];
+
+function solution(bridge_length, weight, truck_weights) {
+  // 다리배열을 다리 길이보다 하나 작게 0으로 채워서 만들고
+  // 마지막 요소에 첫 트럭을 넣는다
+  let bridge = new Array(bridge_length - 1).fill(0);
+  bridge.push(truck_weights.shift());
+  // 트럭 하나가 이미 지났다고 가정해서 1초 지난 걸로 초기화
+  let time = 1;
+  // 다리에 트럭이 없을때 까지 무한루프
+  while (bridge.reduce((a, b) => a + b) > 0) {
+    // 다리 제일 앞에 있는 요소를 보내고
+    // 버틸 수 있는 다리 무게가 다음 트럭보다 높은지 비교한다.
+    // 버틸 수 있으면 다리 마지막 요소에 트럭을 넣고 시간을 경과 시키고
+    // 버틸 수 없으면 0을 넣고 시간을 경과 시킨다.
+    bridge.shift();
+    if (weight - bridge.reduce((a, b) => a + b) >= truck_weights[0]) {
+      bridge.push(truck_weights.shift());
+    } else {
+      bridge.push(0);
+    }
+    time++;
+  }
+  return time;
+}
+
+console.log(solution(2, 10, a));
