@@ -29,3 +29,7 @@ function binarySearch(arr, elem) {
   return arr[middle == elem] ? middle : -1;  
 }
 ```
+- BigO of binarySearch is O(1) in best case, O(logN) in worst case;
+
+
+### Naive String Search
