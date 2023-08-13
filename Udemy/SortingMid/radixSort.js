@@ -17,3 +17,19 @@ function mostDigits(nums) {
   }
   return maxDigits;
 }
+
+function radixSort(nums) {
+  let maxDigitCount = mostDigits(nums);
+  for (let k = 0; k < maxDigitCount; k++) {
+    let digitBuckets = Array.from({ length: 10 }, () => []);
+    for (let i = 0; i < nums.length; i++) {
+      let digit = getDigit(nums[i], k);
+      digitBuckets[digit].push(nums[i]);
+    }
+    // [].concat(...[[1],[2],[3]]) [1,2,3]
+    nums = [].concat(...digitBuckets);
+  }
+  return nums;
+}
+
+radixSort([23, 345, 4546, 12, 23452, 99999]);
