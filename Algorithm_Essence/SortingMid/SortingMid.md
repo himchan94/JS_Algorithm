@@ -37,3 +37,21 @@ arr;
 // any one of these is an acceptable mutation:
 // [2,1,4,3,5,8,7,6]
 ```
+
+3. Radix Sort
+
+- Radix sort is a special sorting algorithm that works on lists of numbers.
+- It never makes compariosns between elements
+- It exploits the fact that information about the size of a number is encoded in the number of digits
+- More digits means a bigger number
+
+PSEUDOCODE
+
+- Define a function that accepts list of numbers;
+- Figure out how many digits the largets numbers has
+- Loop from k = 0up to this largest number of digits
+- For each iteration of the loop:
+  Create buckets for each digit (0 to 9)
+  place each number in the corresponding bucket based on its kth digit
+- Repleace our existing array with values in our buckets, starting with 0 and goin up to 9
+- return list at the end
