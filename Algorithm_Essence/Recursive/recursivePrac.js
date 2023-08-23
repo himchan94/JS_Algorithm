@@ -40,3 +40,9 @@ function reverse(str) {
   helper(splittedString);
   return reversedStringArr.join("");
 }
+
+function fibo(num) {
+  if (num === 1 || num === 2) return 1;
+
+  return fibo(num - 1) + fibo(num - 2);
+}
