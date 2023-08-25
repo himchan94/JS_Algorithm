@@ -22,3 +22,21 @@ function recursiveRange(num) {
 
   return num + recursiveRange(num - 1);
 }
+
+function reverse(str) {
+  // add whatever parameters you deem necessary - good luck!
+
+  const splittedString = str.split("");
+  const reversedStringArr = [];
+
+  function helper(arr) {
+    const length = arr.length;
+    if (!length) return;
+
+    reversedStringArr.push(arr[length - 1]);
+    helper(arr.slice(0, length - 1));
+  }
+
+  helper(splittedString);
+  return reversedStringArr.join("");
+}
