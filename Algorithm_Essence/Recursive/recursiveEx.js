@@ -15,3 +15,9 @@ function sumRange(num) {
   if (num === 1) return 1;
   return num + sumRange(num - 1);
 }
+
+// ex3 factorial
+function factorial(num) {
+  if (num === 1) return 1;
+  return num * factorial(num - 1);
+}
