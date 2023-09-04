@@ -1,0 +1,12 @@
+insert mode : i, a, o, I(beginning of line), A
+
+
+command mode : press ESC
+
+
+
+
+1234A5a6789
+o
+
+ 
