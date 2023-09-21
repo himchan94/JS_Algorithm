@@ -17,3 +17,15 @@
 - Vertex : a node
 - Edge : connection between nodes
 - Diredcted/Undirected - directions assigned to distanced between vertices
+
+### Traverse
+- 트리는 다른 노드로 갈 때 경로가 하나 밖에 없다.
+
+### Graph Traversal uses
+- Peer to peer networking
+- Web crawlers
+- Finding "closest" matches/recommendations
+- Shortest path problems
+- GPS Navigation
+- Solving mazes
+- AI (shortest path to win the game)
