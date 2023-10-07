@@ -14,5 +14,6 @@ if (summary > n) {
   console.log(-1);
 } else {
   n -= summary;
-  if (n % k == 0) console.log(k - 1); // K개에 각각 1씩 더하기 else console.log(k);
+  if (n % k == 0) console.log(k - 1); // K개에 각각 1씩 더하기
+  else console.log(k);
 }
